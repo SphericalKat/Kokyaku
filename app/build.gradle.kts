@@ -71,6 +71,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation(libs.slack.circuit)
+    ksp(libs.slack.circuit.codegen)
+    implementation(libs.slack.circuit.codegen.annotations)
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 }
