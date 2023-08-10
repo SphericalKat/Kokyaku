@@ -6,6 +6,7 @@ lifecycle-runtime-ktx = "2.6.1"
 anvil = "2.4.7"
 dagger = "2.47"
 ksp = "1.9.0-1.0.13"
+retrofit = "2.9.0"
 
 [libraries]
 androidx-activity-compose = "androidx.activity:activity-compose:1.7.2"
@@ -19,12 +20,17 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-core-splashscreen = "androidx.core:core-splashscreen:1.0.1"
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+eithernet = "com.slack.eithernet:eithernet:1.5.0"
+moshi = "com.squareup.moshi:moshi:1.15.0"
+okhttp-interceptor-logging = "com.squareup.okhttp3:logging-interceptor:4.11.0"
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 slack-circuit = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit" }
 slack-circuit-codegen-annotations = { group = "com.slack.circuit", name = "circuit-codegen-annotations", version.ref = "circuit" }
 slack-circuit-codegen = { group = "com.slack.circuit", name = "circuit-codegen", version.ref = "circuit" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 
 
 [plugins]

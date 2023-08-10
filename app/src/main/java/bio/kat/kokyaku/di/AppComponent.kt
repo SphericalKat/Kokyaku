@@ -19,6 +19,6 @@ interface AppComponent {
     }
 
     companion object {
-
+        fun create(context: Context): AppComponent = DaggerAppComponent.factory().create(context)
     }
 }

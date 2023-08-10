@@ -75,4 +75,9 @@ dependencies {
     implementation(libs.slack.circuit.codegen.annotations)
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+    implementation(libs.eithernet)
+    implementation(libs.moshi)
+    implementation(libs.okhttp.interceptor.logging)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.moshi)
 }
