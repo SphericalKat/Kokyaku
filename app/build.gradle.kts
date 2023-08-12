@@ -2,8 +2,8 @@
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.com.squareup.anvil)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.whetstone)
     id("kotlin-kapt")
     id("kotlin-parcelize")
 }

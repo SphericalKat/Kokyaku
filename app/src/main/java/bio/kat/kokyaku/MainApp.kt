@@ -1,10 +1,13 @@
 package bio.kat.kokyaku
 
 import android.app.Application
-import bio.kat.kokyaku.di.AppComponent
+import com.deliveryhero.whetstone.app.ApplicationComponentOwner
+import com.deliveryhero.whetstone.app.ContributesAppInjector
 
-class MainApp : Application() {
-    private val appComponent by lazy { AppComponent.create(this) }
 
-    fun appComponent() = appComponent
+@ContributesAppInjector(generateAppComponent = true)
+class MainApp : Application(), ApplicationComponentOwner {
+    override val applicationComponent by lazy {
+        GeneratedApplicationComponent.create(this)
+    }
 }

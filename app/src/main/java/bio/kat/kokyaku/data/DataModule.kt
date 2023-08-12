@@ -2,8 +2,8 @@ package bio.kat.kokyaku.data
 
 import bio.kat.kokyaku.data.network.JishoApi
 import bio.kat.kokyaku.data.network.models.JlptAdapter
-import bio.kat.kokyaku.di.AppScope
-import bio.kat.kokyaku.di.SingleIn
+import com.deliveryhero.whetstone.SingleIn
+import com.deliveryhero.whetstone.app.ApplicationScope
 import com.squareup.anvil.annotations.ContributesTo
 import com.squareup.moshi.Moshi
 import dagger.Lazy
@@ -16,11 +16,11 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 
 
-@ContributesTo(AppScope::class)
+@ContributesTo(ApplicationScope::class)
 @Module
 object DataModule {
     @Provides
-    @SingleIn(AppScope::class)
+    @SingleIn(ApplicationScope::class)
     fun provideMoshi(): Moshi {
         return Moshi.Builder()
             .add(JlptAdapter())
@@ -28,7 +28,7 @@ object DataModule {
     }
 
     @Provides
-    @SingleIn(AppScope::class)
+    @SingleIn(ApplicationScope::class)
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(
@@ -41,7 +41,7 @@ object DataModule {
     }
 
     @Provides
-    @SingleIn(AppScope::class)
+    @SingleIn(ApplicationScope::class)
     fun provideRetrofit(
         moshi: Moshi,
         okHttpClientLazy: Lazy<OkHttpClient>,
@@ -54,7 +54,7 @@ object DataModule {
     }
 
     @Provides
-    @SingleIn(AppScope::class)
+    @SingleIn(ApplicationScope::class)
     fun provideJishoApi(
         baseRetrofit: Retrofit,
         okHttpClientLazy: Lazy<OkHttpClient>,

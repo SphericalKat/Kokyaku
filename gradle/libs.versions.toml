@@ -9,6 +9,7 @@ ksp = "1.9.0-1.0.13"
 retrofit = "2.9.0"
 androidx-appcompat = "1.6.1"
 androidx-activity = "1.7.2"
+whetstone = "0.6.0"
 
 [libraries]
 androidx-activity-compose = "androidx.activity:activity-compose:1.7.2"
@@ -46,5 +47,6 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.re
 com-squareup-anvil = { id = "com.squareup.anvil", version.ref = "anvil" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
+whetstone = { id = "dev.msfjarvis.whetstone", version.ref = "whetstone" }
 [bundles]
 

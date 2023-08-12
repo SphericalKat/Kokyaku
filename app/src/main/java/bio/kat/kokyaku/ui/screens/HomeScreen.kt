@@ -16,9 +16,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import bio.kat.kokyaku.di.AppScope
 import bio.kat.kokyaku.ui.navigation.BottomNavItem
 import bio.kat.kokyaku.ui.theme.KokyakuTheme
+import com.deliveryhero.whetstone.app.ApplicationScope
 import com.slack.circuit.codegen.annotations.CircuitInject
 import com.slack.circuit.foundation.CircuitContent
 import com.slack.circuit.runtime.CircuitUiEvent
@@ -43,7 +43,7 @@ object HomeScreen : Screen {
     }
 }
 
-@CircuitInject(screen = HomeScreen::class, scope = AppScope::class)
+@CircuitInject(screen = HomeScreen::class, scope = ApplicationScope::class)
 @Composable
 fun HomePresenter(navigator: Navigator): HomeScreen.State {
     var selectedIndex by remember { mutableStateOf(0) }
@@ -57,7 +57,7 @@ fun HomePresenter(navigator: Navigator): HomeScreen.State {
     }
 }
 
-@CircuitInject(screen = HomeScreen::class, scope = AppScope::class)
+@CircuitInject(screen = HomeScreen::class, scope = ApplicationScope::class)
 @Composable
 fun HomeContent(state: HomeScreen.State, modifier: Modifier = Modifier) {
     Scaffold(
