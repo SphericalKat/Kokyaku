@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Kokyaku</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="about_screen">Sample text 420</string>
 </resources>

@@ -1,5 +1,6 @@
 package bio.kat.kokyaku.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,6 +22,8 @@ import bio.kat.kokyaku.ui.theme.KokyakuTheme
 import com.deliveryhero.whetstone.app.ApplicationScope
 import com.slack.circuit.codegen.annotations.CircuitInject
 import com.slack.circuit.foundation.CircuitContent
+import com.slack.circuit.foundation.NavEvent
+import com.slack.circuit.foundation.onNavEvent
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState
 import com.slack.circuit.runtime.Navigator
@@ -36,10 +39,11 @@ object HomeScreen : Screen {
             persistentListOf(BottomNavItem.Search, BottomNavItem.History),
         val selectedIndex: Int = 0,
         val eventSink: (Event) -> Unit,
-    ): CircuitUiState
+    ) : CircuitUiState
 
     sealed interface Event : CircuitUiEvent {
         class ClickNavItem(val index: Int) : Event
+        class ChildNav(val navEvent: NavEvent) : Event
     }
 }
 
@@ -53,6 +57,8 @@ fun HomePresenter(navigator: Navigator): HomeScreen.State {
             is HomeScreen.Event.ClickNavItem -> {
                 selectedIndex = event.index
             }
+
+            is HomeScreen.Event.ChildNav -> navigator.onNavEvent(event.navEvent)
         }
     }
 }
@@ -60,6 +66,7 @@ fun HomePresenter(navigator: Navigator): HomeScreen.State {
 @CircuitInject(screen = HomeScreen::class, scope = ApplicationScope::class)
 @Composable
 fun HomeContent(state: HomeScreen.State, modifier: Modifier = Modifier) {
+    Log.d("HOMESCREEN", "HOMECONTENTCALLED")
     Scaffold(
         modifier = modifier.fillMaxWidth(),
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -76,8 +83,7 @@ fun HomeContent(state: HomeScreen.State, modifier: Modifier = Modifier) {
         CircuitContent(
             screen = screen,
             modifier = Modifier.padding(paddingValues),
-            // TODO: add later
-//            onNavEvent = { event -> state }
+            onNavEvent = { event -> state.eventSink(HomeScreen.Event.ChildNav(event)) }
         )
     }
 }

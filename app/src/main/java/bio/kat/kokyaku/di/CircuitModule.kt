@@ -1,5 +1,6 @@
 package bio.kat.kokyaku.di
 
+import android.util.Log
 import com.deliveryhero.whetstone.app.ApplicationScope
 import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.runtime.presenter.Presenter
@@ -12,17 +13,12 @@ import dagger.multibindings.Multibinds
 @Module
 @ContributesTo(ApplicationScope::class)
 interface CircuitModule {
-    @Multibinds
-    fun presenterFactories(): Set<Presenter.Factory>
-
-    @Multibinds
-    fun viewFactories(): Set<Ui.Factory>
 
     companion object {
         @Provides
         fun provideCircuit(
-            presenterFactories: @JvmSuppressWildcards Set<Presenter.Factory>,
-            uiFactories: @JvmSuppressWildcards Set<Ui.Factory>,
+            presenterFactories: Set<@JvmSuppressWildcards Presenter.Factory>,
+            uiFactories: Set<@JvmSuppressWildcards Ui.Factory>,
         ): Circuit {
             return Circuit.Builder()
                 .addPresenterFactories(presenterFactories)

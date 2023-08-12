@@ -2,6 +2,7 @@ package bio.kat.kokyaku
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
@@ -9,7 +10,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
@@ -42,17 +42,17 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val backStack: ImmutableList<Screen> = persistentListOf(HomeScreen)
-
         setContent {
-            KokyakuTheme {
+            Log.d("TAG", "onCreateCalled")
+
+            KokyakuTheme(dynamicColor = true) {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     val backstack =
                         rememberSaveableBackStack { backStack.forEach { screen -> push(screen) } }
                     val circuitNavigator = rememberCircuitNavigator(backstack)
-                    val navigator = remember(circuitNavigator) { circuitNavigator }
                     CompositionLocalProvider {
                         CircuitCompositionLocals(circuit) {
-                            NavigableCircuitContent(navigator, backstack)
+                            NavigableCircuitContent(circuitNavigator, backstack)
                         }
                     }
                 }
