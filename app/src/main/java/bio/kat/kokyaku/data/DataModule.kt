@@ -1,5 +1,6 @@
 package bio.kat.kokyaku.data
 
+import bio.kat.kokyaku.data.network.JishoApi
 import bio.kat.kokyaku.data.network.models.JlptAdapter
 import bio.kat.kokyaku.di.AppScope
 import bio.kat.kokyaku.di.SingleIn
@@ -12,6 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 
 
 @ContributesTo(AppScope::class)
@@ -56,5 +58,11 @@ object DataModule {
     fun provideJishoApi(
         baseRetrofit: Retrofit,
         okHttpClientLazy: Lazy<OkHttpClient>,
-    ):
+    ): JishoApi {
+        return baseRetrofit
+            .newBuilder()
+            .callFactory { okHttpClientLazy.get().newCall(it) }
+            .build()
+            .create<JishoApi>()
+    }
 }

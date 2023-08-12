@@ -1,25 +1,27 @@
 package bio.kat.kokyaku.data.network.models
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class JishoResponse(
-    val meta: Meta,
+    @Json(name = "meta") val meta: Meta,
+    @Json(name = "data") val data: List<Datum>
 )
 
 @JsonClass(generateAdapter = true)
 data class Meta(
-    val status: String
+    @Json(name = "status") val status: String
 )
 
 data class Datum (
-    val slug: String,
-    val isCommon: Boolean,
-    val tags: List<String>,
-    val jlpt: List<Jlpt>,
-    val japanese: List<Japanese>,
-    val senses: List<Sense>,
-    val attribution: Attribution
+    @Json(name = "slug") val slug: String,
+    @Json(name = "is_common") val isCommon: Boolean,
+    @Json(name = "tags") val tags: List<String>,
+    @Json(name = "jlpt") val jlpt: List<Jlpt>,
+    @Json(name = "japanese") val japanese: List<Japanese>,
+    @Json(name = "senses") val senses: List<Sense>,
+    @Json(name = "attribution") val attribution: Attribution
 )
 
 data class Attribution (
@@ -47,16 +49,16 @@ enum class Jlpt {
 }
 
 data class Sense (
-    val englishDefinitions: List<String>,
-    val partsOfSpeech: List<String>,
-    val links: List<Link>,
-    val tags: List<Any?>,
-    val restrictions: List<Any?>,
-    val seeAlso: List<Any?>,
-    val antonyms: List<Any?>,
-    val source: List<Any?>,
-    val info: List<Any?>,
-    val sentences: List<Any?>? = null
+    @Json(name = "english_definitions") val englishDefinitions: List<String>,
+    @Json(name = "parts_of_speech") val partsOfSpeech: List<String>,
+    @Json(name = "links") val links: List<Link>,
+    @Json(name = "tags")  val tags: List<String>,
+    @Json(name = "restrictions") val restrictions: List<String>,
+    @Json(name = "see_also") val seeAlso: List<String>,
+    // TODO: add these later
+//    val source: List<Any?>,
+//    val info: List<Any?>,
+//    val sentences: List<Any?>? = null
 )
 
 data class Link (

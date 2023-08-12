@@ -74,7 +74,7 @@ private val DarkThemeColors =
 @Composable
 fun KokyakuTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = false,
+    dynamicColor: Boolean = true,
     providedValues: Array<ProvidedValue<*>> = emptyArray(),
     content: @Composable () -> Unit,
 ) {
